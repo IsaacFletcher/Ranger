@@ -25,5 +25,5 @@ This tool allows you to scan a range of IPs or single IPs using the Shodan API. 
 
 ## To Do
 
-- **Add active reconnaissance features (rustscan/masscan integration)
-- **Data analysis and categorization based on Shodan/Rustscan/Masscan ouptut
+- **Add active reconnaissance features (rustscan/masscan integration)**
+- **Data analysis and categorization based on Shodan/Rustscan/Masscan ouptut**
