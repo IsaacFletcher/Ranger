@@ -111,28 +111,26 @@ def main():
         "--extract-ips", help="example: main.py --extract-ips", action="store_true"
     )
     args = parser.parse_args()
-
-    if args.output:
-        output = args.output
-        directory_check(output)
-    elif args.file:
-        file_path = args.file
-        output = args.output
-        directory_check(output)
-    else:
+    if args.output == None:
         output = "./"
-        directory_check(output)
+        output = directory_check(output)
+    else:
+        output = args.output
+        output = directory_check(output)
 
-    # Process range or file
-    if args.extract_ips:
-        if not args.range:
-            print(colored("[!] Please provide a range with --range to extract IPs.", 'red'))
-            return
-        extract_ips_from_range(args.range, output)
-    elif args.range:
-        scan(args.range, output)
-    elif args.file:
-        file(file_path, output)
+    if args.range or args.file:
+        if args.extract_ips:
+            extract_ips_from_range(args.range, output)
+            exit()
+        elif args.file:
+            file(args.file, output)
+            exit()
+        elif args.range:
+            scan(args.range, output)
+            exit()
+    else:
+        print("[-] Please provide either a file or an IP range", "red")
+        exit()
 
 
 if __name__ == "__main__":
